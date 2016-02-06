@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    server_name  server-jenkins.com;
+    location / {
+        proxy_pass http://server_jenkins:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+server {
+    listen 80;
+    server_name  clients-jenkins.com;
+    location / {
+        proxy_pass http://clients_jenkins:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}

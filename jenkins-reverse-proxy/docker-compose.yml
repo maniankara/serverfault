@@ -1,0 +1,16 @@
+httpd:
+  build: httpd
+  ports:
+      - "8080:8080"
+  links:
+      - "server_jenkins"
+      - "clients_jenkins"
+  restart: always
+
+server_jenkins:
+  image: jenkins
+  restart: always
+
+clients_jenkins:
+  image: jenkins
+  restart: always
